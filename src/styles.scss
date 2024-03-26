@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'main-styles.scss';
+@import '../node_modules/bulma/bulma.sass';
+@import "~@angular/cdk/overlay-prebuilt.css";
+
+.cdk-overlay-pane {
+    background: white;
+}

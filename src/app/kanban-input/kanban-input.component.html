@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Add a story</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <input matInput placeholder="Enter Story" [(ngModel)]="data.text" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.text">Add</button>
+</div>
