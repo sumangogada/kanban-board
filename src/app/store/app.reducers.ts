@@ -13,7 +13,7 @@ export function AppReducer(state: AppState = initialState, action: Action) {
     /**
      * Item entities
      */
-    case AppActions.CREATE_ITEM:
+    case AppActions.ItemActionTypes.CREATE:
       const newEntities = JSON.parse(JSON.stringify(state.entities));
       const item = (action as PayloadAction<Item>).payload;
       const key = item.id;
@@ -23,11 +23,11 @@ export function AppReducer(state: AppState = initialState, action: Action) {
         entities: newEntities,
       };
 
-    case AppActions.GET_ITEM:
+    case AppActions.ItemActionTypes.GET:
       const id = (action as PayloadAction<Item>).payload;
       return { ...state };
 
-    case AppActions.DELETE_ITEM:
+    case AppActions.ItemActionTypes.DELETE:
       const idToRemove1 = (action as PayloadAction<number>).payload;
       return {
         ...state,
@@ -37,7 +37,7 @@ export function AppReducer(state: AppState = initialState, action: Action) {
     /**
      * Todo list
      */
-    case AppActions.ADD_TODO:
+    case AppActions.ItemActionTypes.ADD_TODO:
       const newTodo = JSON.parse(JSON.stringify(state.todo));
       const toAddTodo = (action as PayloadAction<number>).payload;
       if (newTodo.indexOf(toAddTodo) === -1) {
@@ -48,7 +48,7 @@ export function AppReducer(state: AppState = initialState, action: Action) {
         todo: newTodo,
       };
 
-    case AppActions.REMOVE_TODO:
+    case AppActions.ItemActionTypes.REMOVE_TODO:
       const idToRemove = (action as PayloadAction<number>).payload;
       return {
         ...state,
@@ -58,8 +58,8 @@ export function AppReducer(state: AppState = initialState, action: Action) {
     /**
      * Doing list
      */
-    case AppActions.ADD_DOING:
-      const newDoing = JSON.parse(JSON.stringify(state.doing));
+    case AppActions.ItemActionTypes.ADD_IMPLEMENTING:
+      const newDoing = JSON.parse(JSON.stringify(state.implement));
       const toAddDoing = (action as PayloadAction<number>).payload;
       if (newDoing.indexOf(toAddDoing) === -1) {
         newDoing.push(toAddDoing);
@@ -69,17 +69,17 @@ export function AppReducer(state: AppState = initialState, action: Action) {
         doing: newDoing,
       };
 
-    case AppActions.REMOVE_DOING:
+    case AppActions.ItemActionTypes.REMOVE_IMPLEMENTING:
       const idToRemoveDoing = (action as PayloadAction<number>).payload;
       return {
         ...state,
-        doing: state.doing.filter((elem) => elem !== idToRemoveDoing),
+        doing: state.implement.filter((elem) => elem !== idToRemoveDoing),
       };
 
     /**
      * Done list
      */
-    case AppActions.ADD_DONE:
+    case AppActions.ItemActionTypes.ADD_DONE:
       const newDone = JSON.parse(JSON.stringify(state.done));
       const toAddDone = (action as PayloadAction<number>).payload;
       if (newDone.indexOf(toAddDone) === -1) {
@@ -91,7 +91,7 @@ export function AppReducer(state: AppState = initialState, action: Action) {
         done: newDone,
       };
 
-    case AppActions.REMOVE_DONE:
+    case AppActions.ItemActionTypes.REMOVE_DONE:
       const idToRemoveDone = (action as PayloadAction<number>).payload;
       return {
         ...state,

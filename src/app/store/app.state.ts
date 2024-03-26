@@ -4,7 +4,7 @@
 export interface AppState {
   entities: object;
   todo: number[];
-  doing: number[];
+  implement: number[];
   done: number[];
 }
 
@@ -15,7 +15,7 @@ export const initializeState = (): AppState => {
   return {
     entities: {},
     todo: [],
-    doing: [],
+    implement: [],
     done: [],
   };
 };

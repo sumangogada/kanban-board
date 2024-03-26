@@ -8,87 +8,64 @@ export default interface PayloadAction<T> extends Action {
   payload: T;
 }
 
-/**
- * Item entities
- */
-export const CREATE_ITEM = '[Item] Create';
-export const GET_ITEM = '[Item] Read';
-export const DELETE_ITEM = '[Item] Delete';
+// Define action types
+export enum ItemActionTypes {
+  CREATE = '[Item] Create',
+  GET = '[Item] Read',
+  DELETE = '[Item] Delete',
+  ADD_TODO = '[Item] Add to todo',
+  REMOVE_TODO = '[Item] Remove from todo',
+  ADD_IMPLEMENTING = '[Item] Add to implementing',
+  REMOVE_IMPLEMENTING = '[Item] Remove from implementing',
+  ADD_DONE = '[Item] Add to done',
+  REMOVE_DONE = '[Item] Remove from done',
+}
 
+// Define action creators
 export class CreateItem implements PayloadAction<Item> {
-  readonly type = CREATE_ITEM;
-  payload: Item;
-  constructor(payload: Item) {
-    this.payload = payload;
-  }
+  readonly type = ItemActionTypes.CREATE;
+  constructor(public payload: Item) { }
 }
 
 export class GetItem implements PayloadAction<number> {
-  readonly type = GET_ITEM;
-  payload: number;
-  constructor(itemId: number) { this.payload = itemId; }
+  readonly type = ItemActionTypes.GET;
+  constructor(public payload: number) { }
 }
 
-export class DeleteItem implements Action {
-  readonly type = DELETE_ITEM;
-  payload: number;
-  constructor(itemId: number) { this.payload = itemId; }
+export class DeleteItem implements PayloadAction<number> {
+  readonly type = ItemActionTypes.DELETE;
+  constructor(public payload: number) { }
 }
-
-/**
- * Todo list
- */
-export const ADD_TODO = '[Item] Add to todo';
-export const REMOVE_TODO = '[Item] Remove from todo';
 
 export class AddToTodo implements PayloadAction<number> {
-  readonly type = ADD_TODO;
-  payload: number;
-  constructor(itemId: number) { this.payload = itemId; }
+  readonly type = ItemActionTypes.ADD_TODO;
+  constructor(public payload: number) { }
 }
 
-export class RemoveFromTodo implements Action {
-  readonly type = REMOVE_TODO;
-  payload: number;
-  constructor(itemId: number) { this.payload = itemId; }
+export class RemoveFromTodo implements PayloadAction<number> {
+  readonly type = ItemActionTypes.REMOVE_TODO;
+  constructor(public payload: number) { }
 }
-
-/**
- * Doing list
- */
-export const ADD_DOING = '[Item] Add to doing';
-export const REMOVE_DOING = '[Item] Remove from doing';
 
 export class AddToDoing implements PayloadAction<number> {
-  readonly type = ADD_DOING;
-  payload: number;
-  constructor(itemId: number) { this.payload = itemId; }
+  readonly type = ItemActionTypes.ADD_IMPLEMENTING;
+  constructor(public payload: number) { }
 }
 
-export class RemoveFromDoing implements Action {
-  readonly type = REMOVE_DOING;
-  payload: number;
-  constructor(itemId: number) { this.payload = itemId; }
+export class RemoveFromDoing implements PayloadAction<number> {
+  readonly type = ItemActionTypes.REMOVE_IMPLEMENTING;
+  constructor(public payload: number) { }
 }
-
-/**
- * Done list
- */
-export const ADD_DONE = '[Item] Add to done';
-export const REMOVE_DONE = '[Item] Remove from done';
 
 export class AddToDone implements PayloadAction<number> {
-  readonly type = ADD_DONE;
-  payload: number;
-  constructor(itemId: number) { this.payload = itemId; }
+  readonly type = ItemActionTypes.ADD_DONE;
+  constructor(public payload: number) { }
 }
 
-export class RemoveFromDone implements Action {
-  readonly type = REMOVE_DONE;
-  payload: number;
-  constructor(itemId: number) { this.payload = itemId; }
+export class RemoveFromDone implements PayloadAction<number> {
+  readonly type = ItemActionTypes.REMOVE_DONE;
+  constructor(public payload: number) { }
 }
 
-
-// Export a type of all actions
-export type AppActions = CreateItem | GetItem | DeleteItem | AddToTodo | RemoveFromTodo | AddToDoing | RemoveFromDoing | AddToDone | RemoveFromDone;
+// Export a union type of all actions
+export type ItemActions = CreateItem | GetItem | DeleteItem | AddToTodo | RemoveFromTodo | AddToDoing | RemoveFromDoing | AddToDone | RemoveFromDone;

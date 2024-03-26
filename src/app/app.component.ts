@@ -4,7 +4,7 @@ import { Item } from "./store/item.model";
 import { Store } from "@ngrx/store";
 import { AppState } from "./store/app.state";
 import { Observable } from "rxjs";
-import { getTodo, getDoing, getDone, getEntities } from "./store/app.selectors";
+import { selectTodo, selectImplementing, selectDone, selectEntities } from "./store/app.selectors";
 import PayloadAction, * as AppActions from "./store/app.actions";
 import { kanbanInputComponent } from "./kanban-input/kanban-input.component";
 import { MatDialog } from "@angular/material/dialog";
@@ -24,10 +24,10 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.itemEntities$ = this.store.select(getEntities);
-    this.todoList$ = this.store.select(getTodo);
-    this.doingList$ = this.store.select(getDoing);
-    this.doneList$ = this.store.select(getDone);
+    this.itemEntities$ = this.store.select(selectEntities);
+    this.todoList$ = this.store.select(selectTodo);
+    this.doingList$ = this.store.select(selectImplementing);
+    this.doneList$ = this.store.select(selectDone);
   }
 
   /**
